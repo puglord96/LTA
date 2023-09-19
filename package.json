@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "@node-minify/clean-css": "^8.0.6",
+    "@node-minify/core": "^8.0.6",
+    "connect": "^3.7.0",
+    "csv-parse": "^5.5.0",
+    "csvtojson": "^2.0.10",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "fast-csv": "^4.3.6",
+    "nodemon": "^3.0.1",
+    "sass": "^1.67.0",
+    "sqlite3": "^5.1.6"
+  }
+}

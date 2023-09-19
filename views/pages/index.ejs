@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/style.min.css" />
+  </head>
+<body>
+<h1>Vehicle Management Application</h1>
+ 
+<div class="filter-div">
+  <p>
+    Car Type
+  </p>
+  <div class="link-flex type">
+    <a data-type="all" class="selected">
+      All
+    </a>
+    <% cartypes.forEach(function(dat) { %>
+      <a data-type="<%= dat.type %>">
+        <%= dat.type %>
+      </a>
+      <% }); %>
+  </div>
+</div>
+<div class="filter-div">
+  <p>
+    Status
+  </p>
+  <div class="link-flex status">
+    <a data-status="all" class="selected">
+      All
+    </a>
+    <a data-status="registered">
+      Registered
+    </a>
+    <a data-status="deregistered">
+      Deregistered
+    </a>
+  </div>
+</div>
+<div class="listview-container">
+  <div data-commercialpersonal="commercial">
+    <h2>
+      Commercial
+    </h2>
+    <% commercial.forEach(function(dat) { %>
+      <div class="listview-div <%= dat.status.toLowerCase()%> " data-date="<%= dat.start_date.split('/')[1]%>" data-type="<%= dat.type.toLowerCase()%>" data-status="<%= dat.status.toLowerCase()%>">
+        <p>
+          <span>
+            Vehicle ID:
+          </span>
+          <span>
+            <%= dat.uuid %>
+          </span>
+        </p>
+        <p>
+          <span>
+            Owner ID:
+          </span>
+          <span>
+            <%= dat.user_uuid %>
+          </span>
+        </p>
+        <p>
+          <span>
+            Status:
+          </span>
+          <span class="status">
+            <%= dat.status %>
+          </span>
+        </p>
+        <p>
+          <span>
+            Brand:
+          </span>
+          <span>
+            <%= dat.brand %>
+          </span>
+        </p>
+        <p>
+          <span>
+            Type:
+          </span>
+          <span>
+            <%= dat.type %>
+          </span>
+        </p>
+        <p>
+          <span>
+            Start Date:
+          </span>
+          <span>
+            <%= dat.start_date %>
+          </span>
+        </p>
+        <p>
+          <span>
+            End Date:
+          </span>
+          <span>
+            <%= dat.end_date %>
+          </span>
+        </p>
+      </div>
+    
+    <% }); %>
+  </div>
+  <div data-commercialpersonal="personal">
+    <h2>
+      Personal
+    </h2>
+    <% personal.forEach(function(dat) { %>
+      <div class="listview-div <%= dat.status.toLowerCase()%> " data-date="<%= dat.start_date.split('/')[1]%>" data-type="<%= dat.type.toLowerCase()%>" data-status="<%= dat.status.toLowerCase()%>">
+        <p>
+          <span>
+            Vehicle ID:
+          </span>
+          <span>
+            <%= dat.uuid %>
+          </span>
+        </p>
+        <p>
+          <span>
+            Owner ID:
+          </span>
+          <span>
+            <%= dat.user_uuid %>
+          </span>
+        </p>
+        <p>
+          <span>
+            Status:
+          </span>
+          <span class="status">
+            <%= dat.status %>
+          </span>
+        </p>
+        <p>
+          <span>
+            Brand:
+          </span>
+          <span>
+            <%= dat.brand %>
+          </span>
+        </p>
+        <p>
+          <span>
+            Type:
+          </span>
+          <span>
+            <%= dat.type %>
+          </span>
+        </p>
+        <p>
+          <span>
+            Start Date:
+          </span>
+          <span>
+            <%= dat.start_date %>
+          </span>
+        </p>
+        <p>
+          <span>
+            End Date:
+          </span>
+          <span>
+            <%= dat.end_date %>
+          </span>
+        </p>
+      </div>
+    
+    <% }); %>
+  </div>
+</div>
+
+</body>
+
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+<script>
+$(document).ready(function(){
+  $(".listview-div").addClass("show");
+});
+
+$(".link-flex.type > a").click(function(){
+  $(".link-flex.type > a").removeClass("selected");
+  $(this).addClass("selected");
+  $(".listview-div").removeClass("show");
+
+  if($(this).attr("data-type") == "all"){
+    if( $(".link-flex.status > a.selected").attr("data-status") == "all"){
+      $(".listview-div").addClass("show");
+    }
+    else{
+      $(".listview-container div[data-status='"+$(".link-flex.status > a.selected").attr("data-status")+"']").addClass("show");
+    }
+    
+    
+  }
+  else{
+    if( $(".link-flex.status > a.selected").attr("data-status") == "all"){
+      $(".listview-container div[data-type='"+$(this).attr("data-type")+"']").addClass("show");
+    }
+    else{
+      $(".listview-container div[data-type='"+$(this).attr("data-type")+"'][data-status='"+$(".link-flex.status > a.selected").attr("data-status")+"']").addClass("show");
+    }
+    
+  }
+  
+});
+
+$(".link-flex.status > a").click(function(){
+  $(".link-flex.status > a").removeClass("selected");
+  $(this).addClass("selected");
+  $(".listview-div").removeClass("show");
+
+  if($(this).attr("data-status") == "all"){
+    if( $(".link-flex.type > a.selected").attr("data-type") == "all"){
+      $(".listview-div").addClass("show");
+    }
+    else{
+      $(".listview-container div[data-type='"+$(".link-flex.type > a.selected").attr("data-type")+"']").addClass("show");
+    }
+  }
+  else{
+    if( $(".link-flex.type > a.selected").attr("data-type") == "all"){
+      $(".listview-container div[data-status='"+$(this).attr("data-status")+"']").addClass("show");
+    }
+    else{
+      $(".listview-container div[data-status='"+$(this).attr("data-status")+"'][data-type='"+$(".link-flex.type > a.selected").attr("data-type")+"']").addClass("show");
+    }
+    
+  }
+  
+});
+
+</script>
+</html>

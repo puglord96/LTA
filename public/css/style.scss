@@ -1,0 +1,137 @@
+@font-face {
+    font-family: 'Inter-Bold';
+    src: url('fonts/Inter-Bold.eot');
+    src: url('fonts/Inter-Bold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/Inter-Bold.woff2') format('woff2'),
+        url('fonts/Inter-Bold.woff') format('woff'),
+        url('fonts/Inter-Bold.ttf') format('truetype'),
+        url('fonts/Inter-Bold.svg#Inter-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inter-SemiBold';
+    src: url('fonts/Inter-SemiBold.eot');
+    src: url('fonts/Inter-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/Inter-SemiBold.woff2') format('woff2'),
+        url('fonts/Inter-SemiBold.woff') format('woff'),
+        url('fonts/Inter-SemiBold.ttf') format('truetype'),
+        url('fonts/Inter-SemiBold.svg#Inter-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('fonts/Inter-Medium.eot');
+    src: url('fonts/Inter-Medium.eot?#iefix') format('embedded-opentype'),
+        url('fonts/Inter-Medium.woff2') format('woff2'),
+        url('fonts/Inter-Medium.woff') format('woff'),
+        url('fonts/Inter-Medium.ttf') format('truetype'),
+        url('fonts/Inter-Medium.svg#Inter-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+
+
+body{
+    background:#f8f8ff;
+    font-family:Inter;    
+}
+
+.listview-container{
+    display:flex;
+    >div{
+        margin-right:2em;
+
+        &:last-child{
+            margin-right:0;
+        }
+        @media screen and (max-width:768px){
+            display:none;
+
+        &.show{
+            display:block;
+        }
+        }
+        
+    }
+    .listview-div{
+        padding:2em 1em;
+        margin-bottom:2em;
+        background:white;
+        position:relative;
+        display:none;
+
+        &.show{
+            display:block;
+        }
+            &:last-child{
+                margin-bottom:0;
+            }
+
+        &.registered{
+            &::before{
+                content:"";
+                background:green;
+                height:100%;
+                width:3px;
+                position:absolute;
+                left:0;
+                top:0;
+            }
+            .status{
+                color:green;
+                font-weight:bold;
+            }
+        }
+
+        &.deregistered{
+            &::before{
+                content:"";
+                background:red;
+                height:100%;
+                width:3px;
+                position:absolute;
+                left:0;
+                top:0;
+            }
+            .status{
+                color:red;
+                font-weight:bold;
+            }
+        }
+    }
+}
+
+.filter-div{
+    margin-bottom:2em;
+
+    &:last-child{
+        margin-bottom:0;
+    }
+
+    .link-flex{
+        display:flex;
+        border:1px solid black;
+        border-radius:2em;
+        width:fit-content;
+        overflow:hidden;
+        > a{
+            padding:1em;
+            border-right:1px solid black;
+            flex:1;
+            white-space: nowrap;
+            cursor:pointer;
+            &:last-child{
+                border-right:none;
+            }
+
+            &.selected{
+                background:blue;
+                color:white;
+            }
+        }
+    }
+}
